@@ -12,26 +12,27 @@ public class User extends Base{
     @Column(name = "user_name", columnDefinition = "varchar(100)",nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "password", columnDefinition = "varchar(100)",nullable = false, unique = true)
+    @Column(name = "password", columnDefinition = "varchar(100)",nullable = false)
     private String password;
 
     @Column(name = "full_name", columnDefinition = "nvarchar(100)",nullable = false)
     private String fullName;
 
-    @Column(name = "created_date", columnDefinition = "timestamp",nullable = false)
+    @Column(name = "created_date")
     private Date createdDate;
 
-    @Column(name = "created_by", columnDefinition = "varchar(100)",nullable = false)
+    @Column(name = "created_by")
     private String createdBy;
 
-    @Column(name = "modified_date", columnDefinition = "timestamp",nullable = false)
+    @Column(name = "modified_date")
     private Date modifiedDate;
 
-    @Column(name = "modified_by", columnDefinition = "varchar(100)",nullable = false)
+    @Column(name = "modified_by")
     private String modifiedBy;
 
     @ManyToMany
-    @JoinTable(name = "permission",joinColumns = @JoinColumn(name = "user_id",nullable = false),
+    @JoinTable(name = "permission",
+            joinColumns = @JoinColumn(name = "user_id",nullable = false),
             inverseJoinColumns = @JoinColumn(name = "role_id",nullable = false))
     private Set<Role> roles = new HashSet<Role>();
 

@@ -13,6 +13,5 @@
 </head>
 <body>
 <h1>Day la home</h1>
-${mess}
 </body>
 </html>

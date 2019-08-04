@@ -5,6 +5,7 @@ import java.util.List;
 public class UserRequest {
     private String userName;
     private String password;
+    private String fullName;
     private List<Long> ids;
 
     public String getUserName() {
@@ -29,5 +30,13 @@ public class UserRequest {
 
     public void setIds(List<Long> ids) {
         this.ids = ids;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

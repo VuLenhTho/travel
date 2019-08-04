@@ -1,10 +1,11 @@
-com\vulenhtho\entity\User.class
 com\vulenhtho\repository\RoleRepository.class
-com\vulenhtho\service\UserService.class
-com\vulenhtho\entity\Role.class
+com\vulenhtho\util\CustomerListener.class
 com\vulenhtho\controller\HomeController.class
 com\vulenhtho\entity\Base.class
+com\vulenhtho\model\request\UserRequest.class
+com\vulenhtho\entity\User.class
+com\vulenhtho\service\UserService.class
+com\vulenhtho\entity\Role.class
 com\vulenhtho\config\JPAConfig.class
 com\vulenhtho\service\impl\UserServiceImpl.class
-com\vulenhtho\model\request\UserRequest.class
 com\vulenhtho\repository\UserRepository.class

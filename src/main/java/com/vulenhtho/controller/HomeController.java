@@ -15,24 +15,27 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-//    private UserServiceImpl userService;
-//
-//    @Autowired
-//    public HomeController(UserServiceImpl userService) {
-//        this.userService = userService;
-//    }
+    private UserService userService;
+
+    @Autowired
+    public HomeController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView homePage(){
         ModelAndView mav = new ModelAndView("home");
         mav.addObject("mess","TEST message");
-//        UserRequest userRequest = new UserRequest();
-//        userRequest.setPassword("1230");
-//        userRequest.setUserName("tho");
-//        List<Long> roles = new ArrayList<Long>();
-//        roles.add(1L);
-//        roles.add(2L);
-//        userService.insert(userRequest);
+        UserRequest userRequest = new UserRequest();
+        userRequest.setPassword("12301");
+        userRequest.setUserName("tho2a");
+        userRequest.setFullName("vl tho2");
+        List<Long> roles = new ArrayList<Long>();
+        roles.add(1L);
+        roles.add(2L);
+
+        userRequest.setIds(roles);
+        userService.insert(userRequest);
         return mav;
     }
 }

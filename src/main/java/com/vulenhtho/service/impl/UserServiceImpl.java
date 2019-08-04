@@ -8,15 +8,12 @@ import com.vulenhtho.repository.UserRepository;
 import com.vulenhtho.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-
+@Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -28,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void insert(UserRequest userRequest) {
-        User user = new User();
+        final User user = new User();
         BeanUtils.copyProperties(userRequest,user);
         Set<Role> roles = new HashSet<Role>();
         for (Long id : userRequest.getIds()) {
