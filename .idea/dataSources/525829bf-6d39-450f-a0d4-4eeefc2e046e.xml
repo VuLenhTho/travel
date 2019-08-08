@@ -993,16 +993,13 @@ role_id</ColNames>
     </column>
     <column id="247" parent="237" name="created_by">
       <Position>2</Position>
-      <DataType>varchar(100)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="248" parent="237" name="created_date">
       <Position>3</Position>
-      <DataType>timestamp|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
-      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
     <column id="249" parent="237" name="full_name">
       <Position>4</Position>
@@ -1013,14 +1010,12 @@ role_id</ColNames>
     </column>
     <column id="250" parent="237" name="modified_by">
       <Position>5</Position>
-      <DataType>varchar(100)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="251" parent="237" name="modified_date">
       <Position>6</Position>
-      <DataType>timestamp|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0000-00-00 00:00:00&apos;</DefaultExpression>
+      <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="252" parent="237" name="password">
@@ -1035,26 +1030,17 @@ role_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="254" parent="237" name="UK_kiqfjabx9puw3p1eg7kily8kg">
-      <ColNames>password</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="255" parent="237" name="UK_lqjrcobrh9jc8wpcar64q1bfh">
+    <index id="254" parent="237" name="UK_lqjrcobrh9jc8wpcar64q1bfh">
       <ColNames>user_name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="256" parent="237" name="PRIMARY">
+    <key id="255" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="257" parent="237" name="UK_kiqfjabx9puw3p1eg7kily8kg">
-      <ColNames>password</ColNames>
-      <UnderlyingIndexName>UK_kiqfjabx9puw3p1eg7kily8kg</UnderlyingIndexName>
-    </key>
-    <key id="258" parent="237" name="UK_lqjrcobrh9jc8wpcar64q1bfh">
+    <key id="256" parent="237" name="UK_lqjrcobrh9jc8wpcar64q1bfh">
       <ColNames>user_name</ColNames>
       <UnderlyingIndexName>UK_lqjrcobrh9jc8wpcar64q1bfh</UnderlyingIndexName>
     </key>

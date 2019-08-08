@@ -3,6 +3,7 @@ package com.vulenhtho.model.request;
 import java.util.List;
 
 public class UserRequest {
+    private Long id;
     private String userName;
     private String password;
     private String fullName;
@@ -38,5 +39,13 @@ public class UserRequest {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -10,7 +10,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void insert(UserRequest userRequest) {
-        final User user = new User();
+        User user = new User();
         BeanUtils.copyProperties(userRequest,user);
         Set<Role> roles = new HashSet<Role>();
         for (Long id : userRequest.getIds()) {
@@ -33,6 +35,28 @@ public class UserServiceImpl implements UserService {
             roles.add(role);
         }
         user.setRoles(roles);
+        user.setCreatedDate(new Date());
         userRepository.save(user);
+
+    }
+
+    @Override
+    public void update(UserRequest userRequest) {
+        User user = new User();
+        BeanUtils.copyProperties(userRequest,user);
+        user.setUserName(userRepository.findUserNameById(userRequest.getId()));
+        Set<Role> roles = new HashSet<>();
+        for (Long id : userRequest.getIds()) {
+            Role role = roleRepository.findOne(id);
+            roles.add(role);
+        }
+        user.setRoles(roles);
+        user.setModifiedDate(new Date());
+        userRepository.save(user);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userRepository.delete(id);
     }
 }
