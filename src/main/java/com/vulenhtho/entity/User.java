@@ -7,15 +7,15 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User extends Base{
+public class User extends Base {
 
-    @Column(name = "user_name", columnDefinition = "varchar(100)",nullable = false, unique = true)
+    @Column(name = "user_name", columnDefinition = "varchar(100)", nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "password", columnDefinition = "varchar(100)",nullable = false)
+    @Column(name = "password", columnDefinition = "varchar(100)", nullable = false)
     private String password;
 
-    @Column(name = "full_name", columnDefinition = "nvarchar(100)",nullable = false)
+    @Column(name = "full_name", columnDefinition = "nvarchar(100)", nullable = false)
     private String fullName;
 
     @Column(name = "created_date")
@@ -32,8 +32,8 @@ public class User extends Base{
 
     @ManyToMany
     @JoinTable(name = "permission",
-            joinColumns = @JoinColumn(name = "user_id",nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "role_id",nullable = false))
+            joinColumns = @JoinColumn(name = "user_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
     private Set<Role> roles = new HashSet<Role>();
 
 

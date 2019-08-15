@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role extends Base{
+public class Role extends Base {
 
     @Column(name = "name", nullable = false)
     private String name;

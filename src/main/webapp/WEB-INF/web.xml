@@ -3,19 +3,17 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-    <display-name>travel</display-name>
+    <display-name>travel-mvc</display-name>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>com.vulenhtho.util.CustomerListener</listener-class>
     </listener>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/context/Application-Context.xml
+            /WEB-INF/ApplicationContext/ApplicationContext.xml
+            /WEB-INF/ApplicationContext/security.xml
         </param-value>
     </context-param>
 
@@ -24,7 +22,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/context/Dispatcher-Servlet.xml</param-value>
+            <param-value>/WEB-INF/ApplicationContext/Dispatcher-Servlet.xml</param-value>
         </init-param>
     </servlet>
 
@@ -32,6 +30,29 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+<!--    &lt;!&ndash;Declare Spring Security Filter &ndash;&gt;-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+<!--    <filter>-->
+<!--        <filter-name>sitemesh</filter-name>-->
+<!--        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>-->
+<!--    </filter>-->
+
+<!--    <filter-mapping>-->
+<!--        <filter-name>sitemesh</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

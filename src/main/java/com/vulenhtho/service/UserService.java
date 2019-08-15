@@ -1,8 +1,7 @@
 package com.vulenhtho.service;
 
+import com.vulenhtho.entity.User;
 import com.vulenhtho.model.request.UserRequest;
-
-import java.util.List;
 
 
 public interface UserService {
@@ -11,4 +10,6 @@ public interface UserService {
     void update(UserRequest userRequest);
 
     void delete(Long id);
+
+    User findUserByUserNameAndPassword(String userName, String password);
 }

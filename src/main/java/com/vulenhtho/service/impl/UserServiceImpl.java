@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     public void insert(UserRequest userRequest) {
         User user = new User();
-        BeanUtils.copyProperties(userRequest,user);
+        BeanUtils.copyProperties(userRequest, user);
         Set<Role> roles = new HashSet<Role>();
         for (Long id : userRequest.getIds()) {
             Role role = roleRepository.findOne(id);
@@ -43,8 +43,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(UserRequest userRequest) {
         User user = new User();
-        BeanUtils.copyProperties(userRequest,user);
-        user.setUserName(userRepository.findUserNameById(userRequest.getId()));
+        BeanUtils.copyProperties(userRequest, user);
+        user.setUserName(userRepository.findUserNameById(userRequest.getId()).getUserName());
+        user.setCreatedDate(userRepository.findUserNameById(userRequest.getId()).getCreatedDate());
         Set<Role> roles = new HashSet<>();
         for (Long id : userRequest.getIds()) {
             Role role = roleRepository.findOne(id);
@@ -52,11 +53,21 @@ public class UserServiceImpl implements UserService {
         }
         user.setRoles(roles);
         user.setModifiedDate(new Date());
+        List<UserRepository.CustomObjectResponse> customObjectResponse = userRepository.findAllByProperties(null,new Date(), "admin1");
         userRepository.save(user);
     }
 
     @Override
     public void delete(Long id) {
+        User user = userRepository.findOne(id);
+        for (Role role : user.getRoles()) {
+            role.getUsers().remove(user);
+        }
         userRepository.delete(id);
+    }
+
+    @Override
+    public User findUserByUserNameAndPassword(String userName, String password) {
+        return userRepository.findUserByUserNameAndPassword(userName,password);
     }
 }

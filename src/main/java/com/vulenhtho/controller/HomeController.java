@@ -1,43 +1,77 @@
 package com.vulenhtho.controller;
 
 import com.vulenhtho.entity.Role;
-import com.vulenhtho.model.request.UserRequest;
+import com.vulenhtho.entity.User;
+import com.vulenhtho.model.request.Register;
+import com.vulenhtho.service.RoleService;
 import com.vulenhtho.service.UserService;
-import com.vulenhtho.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class HomeController {
-    private UserService userService;
 
     @Autowired
-    public HomeController(UserService userService) {
-        this.userService = userService;
-    }
+    private RoleService roleService;
+    @Autowired
+    private UserService userService;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView homePage(){
+    @GetMapping("/admin/home")
+    public ModelAndView home() {
         ModelAndView mav = new ModelAndView("home");
-        mav.addObject("mess","TEST message");
-        UserRequest userRequest = new UserRequest();
-        userRequest.setPassword("1");
-        userRequest.setUserName("admin");
-//        userRequest.setId(3L);
-        userRequest.setFullName("admin1");
-        List<Long> roles = new ArrayList<Long>();
-        roles.add(1L);
-        roles.add(2L);
-
-        userRequest.setIds(roles);
-        userService.insert(userRequest);
-//        userService.delete(3L);
         return mav;
     }
+    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    public String homePost(@ModelAttribute(name = "register") Register register) {
+        String targetUrl = "";
+        User user = userService.
+                findUserByUserNameAndPassword(register.getUsername(), register.getPassword());
+        for (Role role : user.getRoles()){
+            if ("ADMIN".equals(role.getName())){
+                targetUrl = "redirect:/admin/home";
+                break;
+            }else if ("USER".equals(role.getName())){
+                targetUrl = "redirect:/web";
+                break;
+            }
+        }
+
+        return targetUrl;
+    }
+
+
+    @GetMapping("/web")
+    public ModelAndView web() {
+        ModelAndView mav = new ModelAndView("web");
+
+//        Role role = roleService.findOne(id);
+//
+//        mav.addObject("role", role);
+
+        return mav;
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return new ModelAndView("login");
+    }
+
+//    @GetMapping("/logout")
+//    public String logout(HttpServletRequest request, HttpServletResponse response) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null) {
+//            new SecurityContextLogoutHandler().logout(request, response, authentication);
+//        }
+//
+//        return "redirect:/login";
+//    }
+
+//    @GetMapping(value = "/accessDenied")
+//    public String accessDenied(ModelMap model) {
+//        model.addAttribute("message", "your aren't permission this url");
+//
+//        return "redirect:/login";
+//    }
 }
