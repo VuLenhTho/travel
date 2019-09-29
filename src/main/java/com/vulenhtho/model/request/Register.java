@@ -1,6 +1,9 @@
 package com.vulenhtho.model.request;
 
+
 public class Register {
+
+
     private String username;
     private String password;
 

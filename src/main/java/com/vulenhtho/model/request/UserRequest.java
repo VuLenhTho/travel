@@ -7,6 +7,8 @@ public class UserRequest {
     private String userName;
     private String password;
     private String fullName;
+    private String email;
+    private String phone;
     private List<Long> ids;
 
     public String getUserName() {
@@ -47,5 +49,21 @@ public class UserRequest {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

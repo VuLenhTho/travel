@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en" class="h-100" id="login-page1">
 <%@include file="/common/taglib.jsp"%>
@@ -44,6 +46,7 @@
                                 <div class="text-center m-b-15 m-t-15">
                                     <button type="submit" class="btn btn-primary">Sign in</button>
                                 </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form:form>
                         </div>
                     </div>
